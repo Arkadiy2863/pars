@@ -1,0 +1,13 @@
+import requests
+from bs4 import BeautifulSoup
+url = 'https://alpari-online.com/ru/markets/cbr/'
+response = requests.get(url)
+weather = BeautifulSoup(response.text, 'lxml')
+temp = weather.find('span',class_="-rdsn-markets-cbr-course-day__main -rdsn-markets-cbr-course-day__main_size-small")
+print('курс евро на сегодня',temp.text)
+
+url = 'https://mfd.ru/marketdata/?id=5&mode=3&group=16'
+response = requests.get(url)
+price = BeautifulSoup(response.text, 'lxml')
+price_l = price.find('td')
+print(price_l)
